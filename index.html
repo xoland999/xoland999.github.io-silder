@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>輪播</title>
+
+    <link rel="stylesheet" type="text/css" href="css/silder.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+    <div id="vueApp" >
+        <div class="bg" :style="'background-image:url(assest/'+ paths[nextIndex] + ')'">  
+            <div class="silder">
+                <button class="left"  @click="goto( prev(nowIndex) )"><span>&lt;</span></button>
+                <div class="container" >
+                    <img-view v-for="(path, index) in paths" :key="index" 
+                    :path="path" :index='index' :now-index='nowIndex' :show="show"></img-view>
+                    <div :class="['animation', {'ani-next' : show}]">
+                        <img :src="'assest/'+ paths[nextIndex]" alt="">
+                    </div>
+                </div>
+                <button class="right" @click="goto( next(nowIndex) )"><span>&gt;</span></button>
+                <div></div>
+                <div class="_radio">
+                    <div v-for="(item, index) in paths" :key="index">
+                        <input @click="goto(index)" type="radio" name="control" 
+                        :checked="index == nowIndex" 
+                        :disabled="index == nowIndex" >
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script id="imgView" type="text/x-template" >
+            <div :class="['animation', {'ani-next': show&&index === nowIndex}]">
+                <img v-if="index === nowIndex" :src="'assest/'+ path" alt="">
+            </div>
+    </script>
+    <script src="js/silder.js"></script>
+</body>
+</html>

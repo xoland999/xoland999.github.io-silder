@@ -1,0 +1,69 @@
+$view_width:400px;
+$view_height:187.5px;
+
+#vueApp {
+    display: flex;
+    justify-content: center;
+
+    .bg {
+        width: 1280px;
+        height: 600px;
+    }
+}
+
+.silder {
+    position: relative;
+    left: 35%;
+    top: 30%
+}
+
+.container {
+    display: flex;
+    width: $view_width;
+    height: $view_height;
+    overflow: hidden;
+    border: white outset 2px;
+}
+
+._radio {
+    display: flex;
+    position: absolute;
+    z-index: 100;
+    left: 14%;
+}
+
+.animation {
+    img {
+        width: $view_width;
+        max-height: $view_width;
+    }
+}
+.ani-next {
+    animation: 5s next ease-in-out;
+}
+
+@keyframes next {
+    0% {
+        transform: translateX(0%);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+button {
+    width: 30px;
+    height: 30px;
+    z-index: 30;
+    position: absolute;
+    &.left {
+        top: 45%;
+    }
+    &.right {
+        top: 45%;
+        left: $view_width - 26px;
+    }
+}
+
+
